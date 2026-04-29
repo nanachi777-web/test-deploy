@@ -1,0 +1,35 @@
+# Local .terraform directories (plugin cache & modules)
+**/.terraform/*
+
+# Terraform lock file (optional – many teams DO commit this)
+# .terraform.lock.hcl
+
+# State files – contain sensitive infrastructure details
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Sensitive variable files
+*.tfvars
+*.tfvars.json
+
+# Override files (local developer overrides)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# CLI configuration file (may contain credentials)
+.terraformrc
+terraform.rc
+
+# Plan files (can contain sensitive data)
+*.tfplan
+*.plan
+
+# Generated files
+.terraform.tfstate

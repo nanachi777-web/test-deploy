@@ -1,0 +1,36 @@
+name: Build and deploy Terraform configuration
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Initialize Terraform
+      run: terraform init
+
+    - name: Apply Terraform configuration
+      run: terraform apply -auto-approve
+
+    - name: login to azure container registry
+      run: az acr login --name mycontainerregistry
+
+    - name: Build and push Docker image
+      run: |
+        docker build -t mycontainerregistry.azurecr.io/myapp:latest .
+        docker push mycontainerregistry.azurecr.io/myapp:latest
