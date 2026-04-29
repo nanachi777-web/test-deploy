@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "test" {
 }
 
 resource "azurerm_container_registry" "acr" {
-  name                = "mycontainerregistry"
+  name                = "myaprilcontainerfortest"
   resource_group_name = azurerm_resource_group.test.name
   location            = azurerm_resource_group.test.location
   sku                 = "Basic"
